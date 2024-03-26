@@ -102,13 +102,24 @@ WSGI_APPLICATION = 'dhdchBack.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_db',
+        'USER': 'root',
+        'PASSWORD': '3261',
+        'HOST': 'localhost',  # 또는 MySQL 서버의 IP 주소
+        'PORT': '3306',  # MySQL의 기본 포트 번호
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
@@ -129,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 # 나머지 설정은 유지
-AUTH_USER_MODEL = 'dhdch.CustomUser'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
