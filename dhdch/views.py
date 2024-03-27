@@ -36,7 +36,7 @@ import jwt
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@swagger_auto_schema(method="post", request_body=LoginSerializer)
+@swagger_auto_schema(method="post", request_body=LoginSerializer,)
 @api_view(['POST'])
 def login_view(request):
     serializer = LoginSerializer(data=request.data)

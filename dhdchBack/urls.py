@@ -25,15 +25,15 @@ from rest_framework_simplejwt.views import (
 )
 schema_view = get_schema_view(
    openapi.Info(
-      title="나의 API",
+      title="DHDCH Back API",
       default_version='v1',
       description="API 설명",
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="contact@myapi.local"),
-      license=openapi.License(name="BSD 라이센스"),
+      license=openapi.License(name="River"),
    ),
    public=True,
-   permission_classes=(permissions.AllowAny,),
+   permission_classes=(permissions.AllowAny),
 )
 
 urlpatterns = [

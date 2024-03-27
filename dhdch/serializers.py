@@ -59,8 +59,8 @@ class LoginSerializer(serializers.Serializer):
         """
         try:
             user = User.objects.get(email=email)
-            encrypted_password = self.encrypt_password(password)
-            if user.password == encrypted_password:
+            # encrypted_password = self.encrypt_password(password)
+            if user.password == password:
                 return user
         except User.DoesNotExist:
             return None
