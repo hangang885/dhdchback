@@ -2,23 +2,24 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth import login
-from .serializers import LoginSerializer
-# from .serializers import SignUpSerializer, LoginSerializer
+from .serializers import LoginSerializer, UserSerializer
 from drf_yasg.utils import swagger_auto_schema
-# from .serializers import UserSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer,RefreshToken
 import jwt
+from django.core.exceptions import ValidationError
 
-#
-# @swagger_auto_schema(method="post", request_body=UserSerializer)
-# @api_view(['POST'])
-# def signup(request):
-#     serializer = UserSerializer(data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response({"message": "회원가입이 성공적으로 완료되었습니다."}, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#
+@swagger_auto_schema(method="post", request_body=UserSerializer)
+@api_view(['POST'])
+def signup(request):
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        try:
+            serializer.save()
+            return Response({"message": "회원가입이 성공적으로 완료되었습니다."}, status=status.HTTP_201_CREATED)
+        except ValidationError as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 #
 # @swagger_auto_schema(methods=['post'], request_body=SignUpSerializer)
 # @api_view(['POST'])

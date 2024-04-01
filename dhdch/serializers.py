@@ -11,20 +11,24 @@ from .models import User
 # User = get_user_model()
 #
 #
-# class UserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('email', 'password', 'name', 'phone')
-#         extra_kwargs = {'password': {'write_only': True}}
-#
-#     def create(self, validated_data):
-#         user = User.objects.create_user(
-#             email=validated_data['email'],
-#             password=validated_data['password'],
-#             name=validated_data['name'],
-#             phone=validated_data['phone']
-#         )
-#         return user
+
+
+class UserSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
+    name = serializers.CharField()
+    address = serializers.CharField()
+    phone = serializers.CharField()
+    birth = serializers.DateField()
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            email=validated_data['email'],
+            password=validated_data['password'],
+            name=validated_data['name'],
+            phone=validated_data['phone']
+        )
+        return user
 #
 #
 # class SignUpSerializer(serializers.ModelSerializer):
