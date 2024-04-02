@@ -105,7 +105,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_db',
-        'USER': 'root',
+        'USER': 'river',
         'PASSWORD': '3261',
         'HOST': 'localhost',  # 또는 MySQL 서버의 IP 주소
         'PORT': '3306',  # MySQL의 기본 포트 번호
